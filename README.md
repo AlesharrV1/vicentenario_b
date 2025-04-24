@@ -32,11 +32,11 @@
 $ npm install
 ```
 
-## Compile and run the project
+## Compilar y correr el proyecto
 
 ```bash
-# development
-$ npm run start
+# docker
+$ docker-compose up -d
 
 # watch mode
 $ npm run start:dev
@@ -46,7 +46,14 @@ $ npm run start:dev
 para ver el README
 - ctrl + p 
 - markdown: open preview
-
+# politicas
+- no modificar el main.ts
+- no modificar el app.modules.ts
+- usar las ramas con nombres
+- para instalar una nueva depenedencia avisar ya que se instalaran a la rama principal para hacer el merge a las otras 
+- la creacion de nuevos modulos modifican el app.modules.ts
+- si no cambiar de rama con modificaciones pendientes para eso usar un git stash o git stash save "Mis cambios temporales antes de cambiar de rama" y cuando se vuelva a la rama git stash apply ,para ver los shath git stash list y eliminar los stach git stash drop.
+- si el main tiene cambios aplicarlos a la rama que se esta usando
 ## Buenas practicas
 copiar el .env.template y borrar el template //actualmente bacio
 

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14.3
+    container_name: vicentenario 
+    environment:
+      POSTGRES_USER: udinova       
+      POSTGRES_PASSWORD: udinova   
+      POSTGRES_DB: vicentenario_db      
+    ports:
+      - "5432:5432"                     
+    volumes:
+      - ./postgres:/var/lib/postgresql/data # Monta el directorio 
+   

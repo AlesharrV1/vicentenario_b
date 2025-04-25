@@ -16,8 +16,15 @@ export class HistoriasService {
     return await this.historiasRepository.save(nuevaHistoria);
   }
 
-  findAll() {
-    return `This action returns all historias`;
+  async findAll() {
+    try {
+      return await this.historiasRepository.find({
+        where: { estado: true },
+      });
+    } catch (error) {
+      throw new Error(error);  
+    }
+    
   }
 
   findOne(id: number) {

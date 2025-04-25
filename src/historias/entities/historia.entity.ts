@@ -6,6 +6,7 @@ export class Historia {
   id: string;
   @Column({ type: 'text' })
   titulo: string;
-  @Column({ type: 'smallint', width: 1, default: 1 })
-  estado: number;
+  
+  @Column({ type: 'boolean', default: true })
+  estado: boolean;
 }

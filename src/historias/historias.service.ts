@@ -1,11 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { CreateHistoriaDto } from './dto/create-historia.dto';
 import { UpdateHistoriaDto } from './dto/update-historia.dto';
+import { Repository } from 'typeorm';
+import { Historia } from './entities/historia.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class HistoriasService {
-  create(createHistoriaDto: CreateHistoriaDto) {
-    return 'This action adds a new historia';
+  constructor(
+    @InjectRepository(Historia)
+    private historiasRepository:Repository<Historia>,
+  ) {}
+  async create(createHistoriaDto: CreateHistoriaDto) {
+    const nuevaHistoria = this.historiasRepository.create(createHistoriaDto);
+    return await this.historiasRepository.save(nuevaHistoria);
   }
 
   findAll() {
@@ -23,4 +31,5 @@ export class HistoriasService {
   remove(id: number) {
     return `This action removes a #${id} historia`;
   }
+  
 }

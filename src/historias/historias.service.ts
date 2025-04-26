@@ -36,7 +36,12 @@ export class HistoriasService {
     }
     return historia;
   }
-  update(id: number, updateHistoriaDto: UpdateHistoriaDto) {
+  update(id: string, updateHistoriaDto: UpdateHistoriaDto) {
+    const historia = this.findOne(id);
+    if (!historia) {
+      throw new NotFoundException(`Historia with id: ${id} not found`);
+    }
+    this.historiasRepository.update(id, updateHistoriaDto);
     return `This action updates a #${id} historia`;
   }
 

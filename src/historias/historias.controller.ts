@@ -23,8 +23,8 @@ export class HistoriasController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateHistoriaDto: UpdateHistoriaDto) {
-    return this.historiasService.update(+id, updateHistoriaDto);
+  update(@Param('id',new ParseUUIDPipe()) id: string, @Body() updateHistoriaDto: UpdateHistoriaDto) {
+    return this.historiasService.update(id, updateHistoriaDto);
   }
 
   @Delete(':id')

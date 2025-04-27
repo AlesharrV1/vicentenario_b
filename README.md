@@ -97,3 +97,32 @@ docker start vicentenario
 ## TOMAS EN CUANTA CHATGPT
 en la el archivo main.ts y el app.modules.ts se esta usando el validationpipe tomalo encuanta al momento de hacer consulta con la IA o chatGPT
 
+# git tag
+## Asegúrate de estar en la rama
+```bash 
+git checkout main
+```
+## Sincroniza tu repositorio
+```bash 
+git pull origin main
+```
+## Crea un tag
+```bash 
+git tag -a v1.0.0 -m "Descripción de la versión"
+```
+## Empuja el tag al repositorio remoto
+```bash 
+git push origin v1.0.0
+```
+## Verifica los tags
+```bash 
+git tag
+```
+## Eliminar el tag localmente
+```bash 
+git tag -d v1.0.0
+```
+## Eliminar el tag del repositorio remoto
+```bash 
+git push --delete origin v1.0.0
+```

@@ -1,1 +1,50 @@
-export class PuntosTuristico {}
+import { Entity, Column, PrimaryGeneratedColumn, Decimal128, PrimaryColumn } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
+@Entity('Punto_Historico')
+export class PuntosTuristico {
+
+    constructor() {
+        if (!this.PuntoHist_ID) {
+            this.PuntoHist_ID = uuidv4();
+        }
+    }
+
+    @PrimaryColumn('uuid')
+    PuntoHist_ID: string;
+
+    @Column('varchar')
+    Nombre: string;
+
+    @Column('varchar', { nullable: true })
+    Descripcion: string;
+
+    @Column('date')
+    FechaCreacion: Date;
+
+    @Column('varchar')
+    Longitud: string;
+
+    @Column('varchar')
+    Latitud: string;
+
+    @Column('smallint')
+    Estado: number;
+
+    @Column('varchar')
+    HorarioServicio: string;
+
+    @Column('varchar')
+    CostoEntrada: string;
+
+    @Column('varchar')
+    Ciudad: string;
+    
+    @Column('varchar')
+    Pais: string;
+
+    @Column('varchar')
+    Localidad: string;
+
+    @Column('smallint')
+    Visibilidad: number;
+}

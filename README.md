@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+La aplicación "Historia y Turismo de Santa Cruz" es una plataforma diseñada para proporcionar a los ciudadanos y turistas una visión completa de la rica historia y los principales puntos turísticos de Santa Cruz de la Sierra. A través de esta app, los usuarios pueden explorar mapas interactivos, conocer la historia de lugares emblemáticos y descubrir puntos turísticos importantes de la ciudad. Esta herramienta tiene como objetivo ayudar tanto a los habitantes de la ciudad como a los visitantes, especialmente durante las festividades del aniversario de Santa Cruz, brindando información relevante para que puedan disfrutar y aprender más sobre la ciudad.
 
 ## Project setup
 
@@ -38,10 +38,230 @@ $ npm install
 # docker
 $ docker-compose up -d
 
+# ubica la base de datos
+$ cd backup
+
+# copia la base de datos al contenedor
+$ docker cp backup_vicentenario.sql vicentenario:/backup_vicentenario.sql
+
+# restaura la base de datos
+$ docker exec -i vicentenario psql -U udinova -d vicentenario_db -f /backup_vicentenario.sql
+ 
+ #regresa al proyecto
+$ cd ..
 # watch mode
 $ npm run start:dev
 ```
+y apartir de esto solo ejecutar el comando npm run start:dev
+# CONSUMO DE API
+## Get PuntosTuristicos
+peticion : GET
 
+API url: http://localhost:3000/api/puntos-turisticos
+```bash
+[
+    {
+        "PuntoHist_ID": "267eb21a-00cf-4f95-8ab9-f582d52c3563",
+        "Nombre": "Parque Nacional Noel Kempff Mercado",
+        "Descripcion": "Centro de conservación biológica",
+        "FechaCreacion": "2023-06-15",
+        "Longitud": "-60.86667",
+        "Latitud": "-14.26667",
+        "Estado": 1,
+        "HorarioServicio": "08:00 - 16:00",
+        "CostoEntrada": "50.00 Bs",
+        "Ciudad": "Santa Cruz de la Sierra",
+        "Pais": "Bolivia",
+        "Localidad": "Provincia Velasco",
+        "Visibilidad": 1
+    },
+    {
+        "PuntoHist_ID": "9134084d-ba18-4c1b-a158-0a2a22b360bd",
+        "Nombre": "Catedral Metropolitana Basílica Menor de San Lorenzo",
+        "Descripcion": "Iglesia principal de Santa Cruz de la Sierra",
+        "FechaCreacion": "2023-04-22",
+        "Longitud": "-63.181848",
+        "Latitud": "-17.783844",
+        "Estado": 1,
+        "HorarioServicio": "07:00 - 20:00",
+        "CostoEntrada": "Gratis",
+        "Ciudad": "Santa Cruz de la Sierra",
+        "Pais": "Bolivia",
+        "Localidad": "Centro Histórico",
+        "Visibilidad": 1
+    }
+]
+
+```
+## Get PuntosTuristicosById
+peticion : GET
+
+API url: http://localhost:3000/api/puntos-turisticos/{id_punto_hist}
+```bash
+{
+    "PuntoHist_ID": "267eb21a-00cf-4f95-8ab9-f582d52c3563",
+    "Nombre": "Parque Nacional Noel Kempff Mercado",
+    "Descripcion": "Centro de conservación biológica",
+    "FechaCreacion": "2023-06-15",
+    "Longitud": "-60.86667",
+    "Latitud": "-14.26667",
+    "Estado": 1,
+    "HorarioServicio": "08:00 - 16:00",
+    "CostoEntrada": "50.00 Bs",
+    "Ciudad": "Santa Cruz de la Sierra",
+    "Pais": "Bolivia",
+    "Localidad": "Provincia Velasco",
+    "Visibilidad": 1
+}
+
+```
+## Get Historias
+peticion : GET
+
+API url: http://localhost:3000/api/historias
+```bash
+[
+    {
+        "id_historia": "9c08a940-c555-4dc8-8ce8-413cb52ceacf",
+        "titulo": "Fundación de Santa Cruz",
+        "descripcion": "La ciudad de Santa Cruz de la Sierra fue fundada por Ñuflo de Chávez.",
+        "estado": true,
+        "hitos_historicos": [
+            {
+                "id_hito_historico": "065be3fc-5d87-410b-9c5e-4e08bb938973",
+                "titulo": "Consolidación definitiva",
+                "descripcion": "Se establece definitivamente la ubicación actual.",
+                "fecha": "1622-01-01"
+            },
+            {
+                "id_hito_historico": "2d333291-2c27-41a1-8c0b-558f21c4265c",
+                "titulo": "Traslado de la Ciudad",
+                "descripcion": "La ciudad fue trasladada cerca del río Piraí.",
+                "fecha": "1595-01-01"
+            },
+            {
+                "id_hito_historico": "4f563505-03e8-4475-959c-a5030da7ae76",
+                "titulo": "Fundación de Santa Cruz",
+                "descripcion": "Fundación original en la región de Chiquitos.",
+                "fecha": "1561-02-26"
+            }
+        ]
+    },
+    {
+        "id_historia": "9c08a940-c555-4dc8-8ce8-413cb52ceacf",
+        "titulo": "Fundación de Santa Cruz",
+        "descripcion": "La ciudad de Santa Cruz de la Sierra fue fundada por Ñuflo de Chávez.",
+        "estado": true,
+        "hitos_historicos": [
+            {
+                "id_hito_historico": "065be3fc-5d87-410b-9c5e-4e08bb938973",
+                "titulo": "Consolidación definitiva",
+                "descripcion": "Se establece definitivamente la ubicación actual.",
+                "fecha": "1622-01-01"
+            },
+            {
+                "id_hito_historico": "2d333291-2c27-41a1-8c0b-558f21c4265c",
+                "titulo": "Traslado de la Ciudad",
+                "descripcion": "La ciudad fue trasladada cerca del río Piraí.",
+                "fecha": "1595-01-01"
+            },
+            {
+                "id_hito_historico": "4f563505-03e8-4475-959c-a5030da7ae76",
+                "titulo": "Fundación de Santa Cruz",
+                "descripcion": "Fundación original en la región de Chiquitos.",
+                "fecha": "1561-02-26"
+            }
+        ]
+    }
+]
+
+```
+## Get HistoriasById
+peticion : GET
+
+API url: http://localhost:3000/api/historias/{id_historia}
+```bash
+{
+    "id_historia": "9c08a940-c555-4dc8-8ce8-413cb52ceacf",
+    "titulo": "Fundación de Santa Cruz",
+    "descripcion": "La ciudad de Santa Cruz de la Sierra fue fundada por Ñuflo de Chávez.",
+    "estado": true,
+    "hitos_historicos": [
+        {
+            "id_hito_historico": "4f563505-03e8-4475-959c-a5030da7ae76",
+            "titulo": "Fundación de Santa Cruz",
+            "descripcion": "Fundación original en la región de Chiquitos.",
+            "fecha": "1561-02-26"
+        },
+        {
+            "id_hito_historico": "2d333291-2c27-41a1-8c0b-558f21c4265c",
+            "titulo": "Traslado de la Ciudad",
+            "descripcion": "La ciudad fue trasladada cerca del río Piraí.",
+            "fecha": "1595-01-01"
+        },
+        {
+            "id_hito_historico": "065be3fc-5d87-410b-9c5e-4e08bb938973",
+            "titulo": "Consolidación definitiva",
+            "descripcion": "Se establece definitivamente la ubicación actual.",
+            "fecha": "1622-01-01"
+        }
+    ]
+}
+
+```
+## Get HitosHistoricos
+peticion : GET
+
+API url: http://localhost:3000/api/hitos-historicos
+```bash
+[
+    {
+        "id_hito_historico": "4f563505-03e8-4475-959c-a5030da7ae76",
+        "titulo": "Fundación de Santa Cruz",
+        "descripcion": "Fundación original en la región de Chiquitos.",
+        "fecha": "1561-02-26",
+        "historia": {
+            "id_historia": "9c08a940-c555-4dc8-8ce8-413cb52ceacf",
+            "titulo": "Fundación de Santa Cruz",
+            "descripcion": "La ciudad de Santa Cruz de la Sierra fue fundada por Ñuflo de Chávez.",
+            "estado": true
+        }
+    },
+    {
+        "id_hito_historico": "2d333291-2c27-41a1-8c0b-558f21c4265c",
+        "titulo": "Traslado de la Ciudad",
+        "descripcion": "La ciudad fue trasladada cerca del río Piraí.",
+        "fecha": "1595-01-01",
+        "historia": {
+            "id_historia": "9c08a940-c555-4dc8-8ce8-413cb52ceacf",
+            "titulo": "Fundación de Santa Cruz",
+            "descripcion": "La ciudad de Santa Cruz de la Sierra fue fundada por Ñuflo de Chávez.",
+            "estado": true
+        }
+    }
+]
+
+```
+## Get HitosHistoricosById
+
+peticion : GET
+
+API url: http://localhost:3000/api/hitos-historicos/{id_hito_historico}
+```bash
+{
+    "id_hito_historico": "4f563505-03e8-4475-959c-a5030da7ae76",
+    "titulo": "Fundación de Santa Cruz",
+    "descripcion": "Fundación original en la región de Chiquitos.",
+    "fecha": "1561-02-26",
+    "historia": {
+        "id_historia": "9c08a940-c555-4dc8-8ce8-413cb52ceacf",
+        "titulo": "Fundación de Santa Cruz",
+        "descripcion": "La ciudad de Santa Cruz de la Sierra fue fundada por Ñuflo de Chávez.",
+        "estado": true
+    }
+}
+
+```
 # Ver el README
 para ver el README
 - ctrl + p 

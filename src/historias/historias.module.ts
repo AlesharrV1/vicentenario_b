@@ -9,5 +9,6 @@ import { Historia } from './entities/historia.entity';
   imports: [TypeOrmModule.forFeature([Historia])],
   controllers: [HistoriasController],
   providers: [HistoriasService],
+  exports: [HistoriasService],
 })
 export class HistoriasModule {}

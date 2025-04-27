@@ -1,17 +1,50 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateHitosHistoricoDto } from './dto/create-hitos_historico.dto';
 import { UpdateHitosHistoricoDto } from './dto/update-hitos_historico.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { HitosHistorico } from './entities/hitos_historico.entity';
+import { Repository } from 'typeorm';
+import { HistoriasService } from 'src/historias/historias.service';
 
 @Injectable()
 export class HitosHistoricosService {
-  create(createHitosHistoricoDto: CreateHitosHistoricoDto) {
-    return 'This action adds a new hitosHistorico';
+  constructor(
+    @InjectRepository(HitosHistorico)
+    private hitosHistoricosRepository: Repository<HitosHistorico>,
+    private historiasService: HistoriasService,
+  ) {}
+
+  async create(createHitosHistoricoDto: CreateHitosHistoricoDto) {
+    const historia = await this.historiasService.findOneById(
+      createHitosHistoricoDto.historiaid,
+    );
+
+    if (!historia) {
+      throw new NotFoundException(
+        `Historia with id: ${createHitosHistoricoDto.historiaid} not found`,
+      );
+    }
+    const nuevoHito = this.hitosHistoricosRepository.create({
+      titulo: createHitosHistoricoDto.titulo,
+      descripcion: createHitosHistoricoDto.descripcion,
+      fecha: createHitosHistoricoDto.fecha,
+      historia: historia,
+    });
+
+    return await this.hitosHistoricosRepository.save(nuevoHito);
   }
 
-  findAll() {
-    return `This action returns all hitosHistoricos`;
+  async findAll(): Promise<HitosHistorico[]> {
+    try {
+      return await this.hitosHistoricosRepository.find({
+        relations: ['historia'], // Incluye relaciones si es necesario
+      });
+    } catch (error) {
+      throw new NotFoundException(
+        `Error al obtener los hitos históricos: ${error.message}`,
+      );
+    }
   }
-
   findOne(id: number) {
     return `This action returns a #${id} hitosHistorico`;
   }

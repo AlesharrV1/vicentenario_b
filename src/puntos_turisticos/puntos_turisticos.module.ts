@@ -8,6 +8,6 @@ import { PuntosTuristico } from './entities/puntos_turistico.entity';
     imports: [TypeOrmModule.forFeature([PuntosTuristico])],
     controllers: [PuntosTuristicosController],
     providers: [PuntosTuristicosService],
-    exports: [PuntosTuristicosService],
+    exports: [PuntosTuristicosService, TypeOrmModule],
 })
 export class PuntosTuristicosModule {}

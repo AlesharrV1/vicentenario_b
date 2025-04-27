@@ -19,7 +19,7 @@ export class HistoriasController {
 
   @Get(':id')
   findOne(@Param('id',new ParseUUIDPipe()) id: string) {
-    return this.historiasService.findOne(id);
+    return this.historiasService.findOneById(id);
   }
 
   @Patch(':id')

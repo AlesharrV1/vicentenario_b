@@ -21,7 +21,7 @@ export class HistoriasService {
       relations: ['hitos_historicos'],
     });
   }
-
+//no se esta utilizando el findOne 
   async findOne(id: string): Promise<Historia> {
     if (!isUUID(id)) {
       throw new NotFoundException(`Historia with id: ${id} not found`);
@@ -57,11 +57,11 @@ export class HistoriasService {
       where: { id_historia: id },
       relations: ['hitos_historicos'], // Incluye los hitos históricos relacionados
     });
-  
+
     if (!historia) {
       throw new NotFoundException(`Historia with id: ${id} not found`);
     }
-  
+
     return historia;
   }
 }

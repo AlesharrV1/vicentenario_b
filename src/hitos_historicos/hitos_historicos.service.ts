@@ -45,15 +45,30 @@ export class HitosHistoricosService {
       );
     }
   }
-  findOne(id: number) {
-    return `This action returns a #${id} hitosHistorico`;
+  async findOne(id: string) {
+    const hito = await this.hitosHistoricosRepository.findOne({
+      where: { id_hito_historico: id },
+      relations: ['historia'], // Incluye relaciones si es necesario
+    });
+
+    if (!hito) {
+      throw new NotFoundException(`Hito with id: ${id} not found`);
+    }
+
+    return hito;
+
   }
 
   update(id: number, updateHitosHistoricoDto: UpdateHitosHistoricoDto) {
     return `This action updates a #${id} hitosHistorico`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} hitosHistorico`;
+  async remove(id: string) {
+    const hito = await this.findOne(id);
+    if (!hito) {
+      throw new NotFoundException(`Hito with id: ${id} not found`);
+    }
+    await this.hitosHistoricosRepository.remove(hito);
+    return `hito removed`;
   }
 }

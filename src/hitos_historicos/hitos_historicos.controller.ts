@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { HitosHistoricosService } from './hitos_historicos.service';
 import { CreateHitosHistoricoDto } from './dto/create-hitos_historico.dto';
 import { UpdateHitosHistoricoDto } from './dto/update-hitos_historico.dto';
@@ -18,8 +18,8 @@ export class HitosHistoricosController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.hitosHistoricosService.findOne(+id);
+  findOne(@Param('id',new ParseUUIDPipe()) id: string) {
+    return this.hitosHistoricosService.findOne(id);
   }
 
   @Patch(':id')
@@ -28,7 +28,7 @@ export class HitosHistoricosController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.hitosHistoricosService.remove(+id);
+  remove(@Param('id',new ParseUUIDPipe()) id: string) {
+    return this.hitosHistoricosService.remove(id);
   }
 }

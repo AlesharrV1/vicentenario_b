@@ -5,6 +5,7 @@ import { HitosHistoricosModule } from './hitos_historicos/hitos_historicos.modul
 import { SeedModule } from './seed/seed.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { ImagenesModule } from './imagenes/imagenes.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ConfigModule } from '@nestjs/config';
     HistoriasModule,
     HitosHistoricosModule,
     SeedModule,
+    ImagenesModule,
   ],
   controllers: [],
   providers: [],

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, Decimal128, PrimaryColumn } from 'typeorm';
+import { Imagene } from 'src/imagenes/entities/imagene.entity';
+import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 @Entity('Punto_Historico')
 export class PuntosTuristico {
@@ -47,4 +48,7 @@ export class PuntosTuristico {
 
     @Column('smallint')
     Visibilidad: number;
+
+    @OneToMany(() => Imagene, (imagen) => imagen.puntoTuristico)
+    imagenes: Imagene[];
 }

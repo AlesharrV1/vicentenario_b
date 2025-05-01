@@ -5,13 +5,13 @@ import { v4 as uuidv4 } from 'uuid';
 export class PuntosTuristico {
 
     constructor() {
-        if (!this.PuntoHist_ID) {
-            this.PuntoHist_ID = uuidv4();
+        if (!this.PuntoTurisco_ID) {
+            this.PuntoTurisco_ID = uuidv4();
         }
     }
 
     @PrimaryColumn('uuid')
-    PuntoHist_ID: string;
+    PuntoTurisco_ID: string;
 
     @Column('varchar')
     Nombre: string;
@@ -49,6 +49,6 @@ export class PuntosTuristico {
     @Column('smallint')
     Visibilidad: number;
 
-    @OneToMany(() => Imagene, (imagen) => imagen.puntoTuristico)
+    @OneToMany(() => Imagene, (imagen) => imagen.punto_turistico)
     imagenes: Imagene[];
 }

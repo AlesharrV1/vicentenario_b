@@ -1,20 +1,18 @@
-import { IsString, IsISO8601, IsOptional } from 'class-validator';
+import { IsString, IsNumber, IsOptional } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger'
 export class CreateImageneDto {
     
-    @IsString()
-    @IsOptional()
-    Historia_ID: string;
 
     @IsString()
     @IsOptional()
-    PuntosTuristico_ID: string;
+    Historia_ID?: string;
 
     @IsString()
+    @IsOptional()
+    PuntosTuristico_ID?: string;
+
+    @ApiProperty({ default: 1 })
+    @IsNumber()
+    @IsOptional()
     Estado: number;
-
-    @IsString()
-    URL: string;
-
-    @IsISO8601()
-    Fecha_Subida: Date;
 }

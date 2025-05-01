@@ -22,7 +22,7 @@ export class PuntosTuristicosService {
     }
 
     async findOne(id: string): Promise<PuntosTuristico | null> {
-      return await this.puntosTuristicosRepository.findOneBy({ PuntoHist_ID: id });
+      return await this.puntosTuristicosRepository.findOneBy({ PuntoTurisco_ID: id });
   }
 
     async update(

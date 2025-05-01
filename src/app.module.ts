@@ -6,10 +6,11 @@ import { SeedModule } from './seed/seed.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ImagenesModule } from './imagenes/imagenes.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({isGlobal: true}),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -25,6 +26,7 @@ import { ImagenesModule } from './imagenes/imagenes.module';
     HitosHistoricosModule,
     SeedModule,
     ImagenesModule,
+    CloudinaryModule
   ],
   controllers: [],
   providers: [],

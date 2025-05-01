@@ -1,16 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, Decimal128, PrimaryColumn } from 'typeorm';
+import { Imagene } from 'src/imagenes/entities/imagene.entity';
+import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 @Entity('Punto_Historico')
 export class PuntosTuristico {
 
     constructor() {
-        if (!this.PuntoHist_ID) {
-            this.PuntoHist_ID = uuidv4();
+        if (!this.PuntoTurisco_ID) {
+            this.PuntoTurisco_ID = uuidv4();
         }
     }
 
     @PrimaryColumn('uuid')
-    PuntoHist_ID: string;
+    PuntoTurisco_ID: string;
 
     @Column('varchar')
     Nombre: string;
@@ -47,4 +48,7 @@ export class PuntosTuristico {
 
     @Column('smallint')
     Visibilidad: number;
+
+    @OneToMany(() => Imagene, (imagen) => imagen.punto_turistico)
+    imagenes: Imagene[];
 }

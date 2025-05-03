@@ -113,7 +113,7 @@ export class ImagenesService {
   async findByPuntoTuristico(puntoID: string) {
     return this.imagenRepo.find({
       where: {
-        punto_turistico: { PuntoTurisco_ID: puntoID },
+        punto_turistico: { PuntoHist_ID: puntoID },
         Estado: 1,
       },
       relations: ['punto_turistico'],

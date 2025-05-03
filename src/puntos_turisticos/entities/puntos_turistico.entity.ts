@@ -5,13 +5,13 @@ import { v4 as uuidv4 } from 'uuid';
 export class PuntosTuristico {
 
     constructor() {
-        if (!this.PuntoTurisco_ID) {
-            this.PuntoTurisco_ID = uuidv4();
+        if (!this.PuntoHist_ID) {
+            this.PuntoHist_ID = uuidv4();
         }
     }
 
     @PrimaryColumn('uuid')
-    PuntoTurisco_ID: string;
+    PuntoHist_ID: string;
 
     @Column('varchar')
     Nombre: string;

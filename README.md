@@ -54,6 +54,63 @@ $ npm run start:dev
 ```
 y apartir de esto solo ejecutar el comando npm run start:dev
 # CONSUMO DE API
+## imagenes
+por punto turistico 
+
+peticion :get
+
+usando el id del punto turistico
+
+api url : http://localhost:3000/api/imagenes/por-punto-turistico/9134084d-ba18-4c1b-a158-0a2a22b360bd
+
+
+```bash
+[
+    {
+        "imagen_ID": "8f45e604-0e0d-44db-89af-44a230718e9e",
+        "Estado": 1,
+        "URL": "https://res.cloudinary.com/dve46ccsk/image/upload/v1746378532/yn2flfvwooft29h7moit.jpg",
+        "Fecha_Subida": "2025-05-04",
+        "punto_turistico": {
+            "PuntoHist_ID": "9134084d-ba18-4c1b-a158-0a2a22b360bd",
+            "Nombre": "Catedral Metropolitana Basílica Menor de San Lorenzo",
+            "Descripcion": "Iglesia principal de Santa Cruz de la Sierra",
+            "FechaCreacion": "2023-04-22",
+            "Longitud": "-63.181848",
+            "Latitud": "-17.783844",
+            "Estado": 1,
+            "HorarioServicio": "07:00 - 20:00",
+            "CostoEntrada": "Gratis",
+            "Ciudad": "Santa Cruz de la Sierra",
+            "Pais": "Bolivia",
+            "Localidad": "Centro Histórico",
+            "Visibilidad": 1
+        }
+    }
+]
+
+```
+por historias
+
+usando el id de la historias
+
+API url :http://localhost:3000/api/imagenes/por-historia/9c08a940-c555-4dc8-8ce8-413cb52ceacf
+```bash
+[
+    {
+        "imagen_ID": "f890d890-5ad8-4598-9a3c-ce4012e32586",
+        "Estado": 1,
+        "URL": "https://res.cloudinary.com/dve46ccsk/image/upload/v1746218748/ijpbgtunmprphirkager.jpg",
+        "Fecha_Subida": "2025-05-02",
+        "historia": {
+            "id_historia": "9c08a940-c555-4dc8-8ce8-413cb52ceacf",
+            "titulo": "Fundación de Santa Cruz",
+            "descripcion": "La ciudad de Santa Cruz de la Sierra fue fundada por Ñuflo de Chávez.",
+            "estado": true
+        }
+    }
+]
+```
 ## Get PuntosTuristicos
 peticion : GET
 

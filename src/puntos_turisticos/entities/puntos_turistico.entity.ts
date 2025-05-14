@@ -49,6 +49,9 @@ export class PuntosTuristico {
     @Column('smallint')
     Visibilidad: number;
 
+    @Column('varchar', { nullable: true })
+    Tipo: string;
+
     @OneToMany(() => Imagene, (imagen) => imagen.punto_turistico)
     imagenes: Imagene[];
 }

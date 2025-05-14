@@ -37,4 +37,7 @@ export class CreatePuntosTuristicoDto {
 
     @IsNumber()
     Visibilidad: number;
+
+    @IsString()
+    Tipo: string;   
 }

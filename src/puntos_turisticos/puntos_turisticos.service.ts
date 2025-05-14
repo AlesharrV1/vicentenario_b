@@ -18,7 +18,9 @@ export class PuntosTuristicosService {
     }
 
     async findAll(): Promise<PuntosTuristico[]> {
-        return await this.puntosTuristicosRepository.find();
+        return await this.puntosTuristicosRepository.find({
+            relations: ['imagenes'],
+          });
     }
 
     async findOne(id: string): Promise<PuntosTuristico | null> {

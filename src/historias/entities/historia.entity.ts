@@ -22,4 +22,6 @@ export class Historia {
   //Se esta importando el entity de imagenes para poder hacer la relacion uno a muchos
   @OneToMany(() => Imagene, (imagen) => imagen.historia)
   imagenes: Imagene[];
+  @OneToMany(() => Imagene, (imagen) => imagen.punto_turistico)
+  imagenes_punto_turistico: Imagene[];
 }

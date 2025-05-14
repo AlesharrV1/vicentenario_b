@@ -18,7 +18,7 @@ export class HistoriasService {
 
   async findAll(): Promise<Historia[]> {
     return this.historiasRepository.find({
-      relations: ['hitos_historicos'],
+      relations: ['hitos_historicos', 'imagenes'],
     });
   }
 //no se esta utilizando el findOne 

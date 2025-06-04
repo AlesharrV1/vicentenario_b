@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ImagenesModule } from './imagenes/imagenes.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
     HitosHistoricosModule,
     SeedModule,
     ImagenesModule,
-    CloudinaryModule
+    CloudinaryModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],

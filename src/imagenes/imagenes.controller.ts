@@ -13,6 +13,8 @@ import {
   UseInterceptors
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ValidRoles } from 'src/auth/interfaces';
+import { Auth } from 'src/auth/decorators';
 
 
 @Controller('imagenes')
@@ -21,7 +23,7 @@ export class ImagenesController {
   constructor(
     private readonly imagenesService: ImagenesService,
   ) {}
-
+  @Auth(ValidRoles.admin)
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   uploadImage(
@@ -40,7 +42,7 @@ export class ImagenesController {
   findOne(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.imagenesService.findOne(id);
   }
-
+  @Auth(ValidRoles.admin)
   @Patch(':id')
   update(
     @Param('id', new ParseUUIDPipe()) id: string,
@@ -48,12 +50,12 @@ export class ImagenesController {
   ) {
     return this.imagenesService.update(id, dto);
   }
-
+  @Auth(ValidRoles.admin)
   @Delete(':id')
   remove(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.imagenesService.remove(id);
   }
-
+  @Auth(ValidRoles.admin)
   @Patch('ocultar/:id')
   removeByOculto(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.imagenesService.removeByOculto(id);

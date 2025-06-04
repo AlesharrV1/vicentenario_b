@@ -6,14 +6,15 @@ import { Imagene } from './entities/imagene.entity';
 import { HistoriasModule } from '../historias/historias.module';
 import { PuntosTuristicosModule } from '../puntos_turisticos/puntos_turisticos.module';
 import { CloudinaryModule } from '../cloudinary/cloudinary.module';
-
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Imagene]),
     HistoriasModule,
     PuntosTuristicosModule,
-    CloudinaryModule
+    CloudinaryModule,
+    AuthModule,
   ],
   controllers: [ImagenesController],
   providers: [ImagenesService],
